@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { DialogRoot, DialogClose, Dialog, DialogTitle } from '~/components/ui/Dialog';
 import { db, getAll, deleteById } from '~/lib/persistence';
+import { classNames } from '~/utils/classNames';
 
 export default function DataTab() {
   const [isDownloadingTemplate, setIsDownloadingTemplate] = useState(false);
@@ -324,13 +325,13 @@ export default function DataTab() {
         transition={{ delay: 0.1 }}
       >
         <div className="flex items-center gap-2 mb-2">
-          <div className="i-ph:chat-circle-duotone w-5 h-5 text-purple-500" />
+          <div className="i-ph:chat-circle-duotone w-5 h-5 text-pink-500" />
           <h3 className="text-lg font-medium text-gray-900 dark:text-white">Chat History</h3>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Export or delete all your chat history.</p>
         <div className="flex gap-4">
           <motion.button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 text-white text-sm hover:bg-purple-600"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-500 text-white text-sm hover:bg-pink-600"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleExportAllChats}
@@ -358,7 +359,7 @@ export default function DataTab() {
         transition={{ delay: 0.2 }}
       >
         <div className="flex items-center gap-2 mb-2">
-          <div className="i-ph:gear-duotone w-5 h-5 text-purple-500" />
+          <div className="i-ph:gear-duotone w-5 h-5 text-pink-500" />
           <h3 className="text-lg font-medium text-gray-900 dark:text-white">Settings Backup</h3>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
@@ -366,7 +367,7 @@ export default function DataTab() {
         </p>
         <div className="flex gap-4">
           <motion.button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 text-white text-sm hover:bg-purple-600"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-500 text-white text-sm hover:bg-pink-600"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleExportSettings}
@@ -375,16 +376,7 @@ export default function DataTab() {
             Export Settings
           </motion.button>
           <motion.button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 text-white text-sm hover:bg-purple-600"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <div className="i-ph:upload-simple w-4 h-4" />
-            Import Settings
-          </motion.button>
-          <motion.button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-50 text-yellow-600 text-sm hover:bg-yellow-100 dark:bg-yellow-500/10 dark:hover:bg-yellow-500/20 dark:text-yellow-500"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-500 text-white text-sm hover:bg-pink-600"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setShowResetInlineConfirm(true)}
@@ -403,7 +395,7 @@ export default function DataTab() {
         transition={{ delay: 0.3 }}
       >
         <div className="flex items-center gap-2 mb-2">
-          <div className="i-ph:key-duotone w-5 h-5 text-purple-500" />
+          <div className="i-ph:key-duotone w-5 h-5 text-pink-500" />
           <h3 className="text-lg font-medium text-gray-900 dark:text-white">API Keys Management</h3>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
@@ -418,7 +410,7 @@ export default function DataTab() {
             className="hidden"
           />
           <motion.button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 text-white text-sm hover:bg-purple-600"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-500 text-white text-sm hover:bg-pink-600"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleDownloadTemplate}
@@ -432,7 +424,7 @@ export default function DataTab() {
             Download Template
           </motion.button>
           <motion.button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 text-white text-sm hover:bg-purple-600"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-500 text-white text-sm hover:bg-pink-600"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => apiKeyFileInputRef.current?.click()}

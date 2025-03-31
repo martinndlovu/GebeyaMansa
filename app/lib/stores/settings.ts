@@ -11,6 +11,8 @@ import { DEFAULT_TAB_CONFIG } from '~/components/@settings/core/constants';
 import Cookies from 'js-cookie';
 import { toggleTheme } from './theme';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import { DEFAULT_PROVIDER_SETTINGS } from './default-settings';
 
 export interface Shortcut {
   key: string;
@@ -30,7 +32,7 @@ export interface Shortcuts {
 }
 
 export const URL_CONFIGURABLE_PROVIDERS = ['Ollama', 'LMStudio', 'OpenAILike'];
-export const LOCAL_PROVIDERS = ['OpenAILike', 'LMStudio', 'Ollama'];
+export const LOCAL_PROVIDERS = ['Ollama', 'OpenAILike', 'LMStudio'];
 
 export type ProviderSetting = Record<string, IProviderConfig>;
 
@@ -300,27 +302,21 @@ interface SettingsStore {
   openSettings: () => void;
   closeSettings: () => void;
   setSelectedTab: (tab: string) => void;
+  providers: ProviderSetting;
 }
 
-export const useSettingsStore = create<SettingsStore>((set) => ({
-  isOpen: false,
-  selectedTab: 'user', // Default tab
-
-  openSettings: () => {
-    set({
-      isOpen: true,
-      selectedTab: 'user', // Always open to user tab
-    });
-  },
-
-  closeSettings: () => {
-    set({
+export const useSettingsStore = create<SettingsStore>()(
+  persist(
+    (set) => ({
       isOpen: false,
-      selectedTab: 'user', // Reset to user tab when closing
-    });
-  },
-
-  setSelectedTab: (tab: string) => {
-    set({ selectedTab: tab });
-  },
-}));
+      selectedTab: 'profile',
+      openSettings: () => set({ isOpen: true }),
+      closeSettings: () => set({ isOpen: false }),
+      setSelectedTab: (tab: string) => set({ selectedTab: tab }),
+      providers: providersStore.get(),
+    }),
+    {
+      name: 'settings-store',
+    }
+  )
+);

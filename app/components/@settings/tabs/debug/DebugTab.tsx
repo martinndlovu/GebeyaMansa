@@ -172,7 +172,7 @@ const DependencySection = ({
         className={classNames(
           'flex w-full items-center justify-between p-4',
           'bg-white dark:bg-[#0A0A0A]',
-          'hover:bg-purple-50/50 dark:hover:bg-[#1a1a1a]',
+          'hover:bg-pink-50/50 dark:hover:bg-[#1a1a1a]',
           'border-b border-[#E5E5E5] dark:border-[#1A1A1A]',
           'transition-colors duration-200',
           'first:rounded-t-lg last:rounded-b-lg',
@@ -1175,11 +1175,11 @@ export default function DebugTab() {
             'text-sm text-gray-900 dark:text-white',
             'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
             'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-            'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+            'hover:bg-pink-500/10 dark:hover:bg-pink-500/20',
             'transition-all duration-200',
           )}
         >
-          <span className="i-ph:download text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
+          <span className="i-ph:download text-lg text-gray-500 dark:text-gray-400 group-hover:text-pink-500 transition-colors" />
           Export
         </button>
 
@@ -1199,8 +1199,8 @@ export default function DebugTab() {
                     'flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-colors w-full text-left',
                     'bg-white dark:bg-[#0A0A0A]',
                     'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-                    'hover:bg-purple-50 dark:hover:bg-[#1a1a1a]',
-                    'hover:border-purple-200 dark:hover:border-purple-900/30',
+                    'hover:bg-pink-50 dark:hover:bg-[#1a1a1a]',
+                    'hover:border-pink-200 dark:hover:border-pink-900/30',
                     'text-bolt-elements-textPrimary',
                   )}
                 >
@@ -1271,9 +1271,9 @@ export default function DebugTab() {
       {/* Quick Stats Banner */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Errors Card */}
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-purple-500/30 transition-all duration-200 h-[180px] flex flex-col">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-pink-500/30 transition-all duration-200 h-[180px] flex flex-col">
           <div className="flex items-center gap-2">
-            <div className="i-ph:warning-octagon text-purple-500 w-4 h-4" />
+            <div className="i-ph:warning-octagon text-pink-500 w-4 h-4" />
             <div className="text-sm text-bolt-elements-textSecondary">Errors</div>
           </div>
           <div className="flex items-center gap-2 mt-2">
@@ -1294,171 +1294,32 @@ export default function DebugTab() {
           </div>
         </div>
 
-        {/* Memory Usage Card */}
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-purple-500/30 transition-all duration-200 h-[180px] flex flex-col">
+        {/* CPU Card */}
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-pink-500/30 transition-all duration-200 h-[180px] flex flex-col">
           <div className="flex items-center gap-2">
-            <div className="i-ph:cpu text-purple-500 w-4 h-4" />
-            <div className="text-sm text-bolt-elements-textSecondary">Memory Usage</div>
-          </div>
-          <div className="flex items-center gap-2 mt-2">
-            <span
-              className={classNames(
-                'text-2xl font-semibold',
-                (systemInfo?.memory?.percentage ?? 0) > 80
-                  ? 'text-red-500'
-                  : (systemInfo?.memory?.percentage ?? 0) > 60
-                    ? 'text-yellow-500'
-                    : 'text-green-500',
-              )}
-            >
-              {systemInfo?.memory?.percentage ?? 0}%
-            </span>
-          </div>
-          <Progress
-            value={systemInfo?.memory?.percentage ?? 0}
-            className={classNames(
-              'mt-2',
-              (systemInfo?.memory?.percentage ?? 0) > 80
-                ? '[&>div]:bg-red-500'
-                : (systemInfo?.memory?.percentage ?? 0) > 60
-                  ? '[&>div]:bg-yellow-500'
-                  : '[&>div]:bg-green-500',
-            )}
-          />
-          <div className="text-xs text-bolt-elements-textSecondary mt-2 flex items-center gap-1.5">
-            <div className="i-ph:info w-3.5 h-3.5 text-purple-500" />
-            Used: {systemInfo?.memory.used ?? '0 GB'} / {systemInfo?.memory.total ?? '0 GB'}
+            <div className="i-ph:cpu text-pink-500 w-4 h-4" />
+            <div className="text-sm text-bolt-elements-textSecondary">CPU</div>
           </div>
         </div>
-
-        {/* Page Load Time Card */}
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-purple-500/30 transition-all duration-200 h-[180px] flex flex-col">
+        {/* Memory Card */}
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-pink-500/30 transition-all duration-200 h-[180px] flex flex-col">
           <div className="flex items-center gap-2">
-            <div className="i-ph:timer text-purple-500 w-4 h-4" />
-            <div className="text-sm text-bolt-elements-textSecondary">Page Load Time</div>
-          </div>
-          <div className="flex items-center gap-2 mt-2">
-            <span
-              className={classNames(
-                'text-2xl font-semibold',
-                (systemInfo?.performance.timing.loadTime ?? 0) > 2000
-                  ? 'text-red-500'
-                  : (systemInfo?.performance.timing.loadTime ?? 0) > 1000
-                    ? 'text-yellow-500'
-                    : 'text-green-500',
-              )}
-            >
-              {systemInfo ? (systemInfo.performance.timing.loadTime / 1000).toFixed(2) : '-'}s
-            </span>
-          </div>
-          <div className="text-xs text-bolt-elements-textSecondary mt-2 flex items-center gap-1.5">
-            <div className="i-ph:code w-3.5 h-3.5 text-purple-500" />
-            DOM Ready: {systemInfo
-              ? (systemInfo.performance.timing.domReadyTime / 1000).toFixed(2)
-              : '-'}s
+            <div className="i-ph:timer text-pink-500 w-4 h-4" />
+            <div className="text-sm text-bolt-elements-textSecondary">Memory</div>
           </div>
         </div>
-
-        {/* Network Speed Card */}
-        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-purple-500/30 transition-all duration-200 h-[180px] flex flex-col">
+        {/* Network Card */}
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-pink-500/30 transition-all duration-200 h-[180px] flex flex-col">
           <div className="flex items-center gap-2">
-            <div className="i-ph:wifi-high text-purple-500 w-4 h-4" />
-            <div className="text-sm text-bolt-elements-textSecondary">Network Speed</div>
-          </div>
-          <div className="flex items-center gap-2 mt-2">
-            <span
-              className={classNames(
-                'text-2xl font-semibold',
-                (systemInfo?.network.downlink ?? 0) < 5
-                  ? 'text-red-500'
-                  : (systemInfo?.network.downlink ?? 0) < 10
-                    ? 'text-yellow-500'
-                    : 'text-green-500',
-              )}
-            >
-              {systemInfo?.network.downlink ?? '-'} Mbps
-            </span>
-          </div>
-          <div className="text-xs text-bolt-elements-textSecondary mt-2 flex items-center gap-1.5">
-            <div className="i-ph:activity w-3.5 h-3.5 text-purple-500" />
-            RTT: {systemInfo?.network.rtt ?? '-'} ms
+            <div className="i-ph:wifi-high text-pink-500 w-4 h-4" />
+            <div className="text-sm text-bolt-elements-textSecondary">Network</div>
           </div>
         </div>
-
-        {/* Ollama Service Card - Now spans all 4 columns */}
-        <div className="md:col-span-4 p-6 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-purple-500/30 transition-all duration-200 h-[260px] flex flex-col">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="i-ph:robot text-purple-500 w-5 h-5" />
-              <div>
-                <div className="text-base font-medium text-bolt-elements-textPrimary">Ollama Service</div>
-                <div className="text-xs text-bolt-elements-textSecondary mt-0.5">{status.message}</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-bolt-elements-background-depth-3">
-                <div
-                  className={classNames('w-2 h-2 rounded-full animate-pulse', status.bgColor, {
-                    'shadow-lg shadow-green-500/20': status.status === 'Running',
-                    'shadow-lg shadow-red-500/20': status.status === 'Not Running',
-                  })}
-                />
-                <span className={classNames('text-xs font-medium flex items-center gap-1', status.color)}>
-                  {status.status}
-                </span>
-              </div>
-              <div className="text-[10px] text-bolt-elements-textTertiary flex items-center gap-1.5">
-                <div className="i-ph:clock w-3 h-3" />
-                {ollamaStatus.lastChecked.toLocaleTimeString()}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 flex-1 min-h-0 flex flex-col">
-            {status.status === 'Running' && ollamaStatus.models && ollamaStatus.models.length > 0 ? (
-              <>
-                <div className="text-xs font-medium text-bolt-elements-textSecondary flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="i-ph:cube-duotone w-4 h-4 text-purple-500" />
-                    <span>Installed Models</span>
-                    <Badge variant="secondary" className="ml-1">
-                      {ollamaStatus.models.length}
-                    </Badge>
-                  </div>
-                </div>
-                <div className="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-600">
-                  <div className="grid grid-cols-2 gap-3 pr-2">
-                    {ollamaStatus.models.map((model) => (
-                      <div
-                        key={model.name}
-                        className="text-sm bg-bolt-elements-background-depth-3 hover:bg-bolt-elements-background-depth-4 rounded-lg px-4 py-3 flex items-center justify-between transition-colors group"
-                      >
-                        <div className="flex items-center gap-2 text-bolt-elements-textSecondary">
-                          <div className="i-ph:cube w-4 h-4 text-purple-500/70 group-hover:text-purple-500 transition-colors" />
-                          <span className="font-mono truncate">{model.name}</span>
-                        </div>
-                        <Badge variant="outline" className="ml-2 text-xs font-mono">
-                          {Math.round(parseInt(model.size) / 1024 / 1024)}MB
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </>
-            ) : (
-              <div className="flex-1 flex items-center justify-center">
-                <div className="flex flex-col items-center gap-3 max-w-[280px] text-center">
-                  <div
-                    className={classNames('w-12 h-12', {
-                      'i-ph:warning-circle text-red-500/80':
-                        status.status === 'Not Running' || status.status === 'Disabled',
-                      'i-ph:cube-duotone text-purple-500/80': status.status === 'Running',
-                    })}
-                  />
-                  <span className="text-sm text-bolt-elements-textSecondary">{status.message}</span>
-                </div>
-              </div>
-            )}
+        {/* Model Card */}
+        <div className="p-4 rounded-xl bg-white dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-[#1A1A1A] hover:border-pink-500/30 transition-all duration-200 h-[260px] flex flex-col">
+          <div className="flex items-center gap-2">
+            <div className="i-ph:robot text-pink-500 w-5 h-5" />
+            <div className="text-sm text-bolt-elements-textSecondary">Model</div>
           </div>
         </div>
       </div>

@@ -19,8 +19,14 @@ import 'virtual:uno.css';
 export const links: LinksFunction = () => [
   {
     rel: 'icon',
-    href: '/favicon.svg',
-    type: 'image/svg+xml',
+    href: '/mansa-favicon.png',
+    type: 'image/png',
+    sizes: '96x96',
+  },
+  {
+    rel: 'apple-touch-icon',
+    href: '/mansa-favicon.png',
+    sizes: '96x96',
   },
   { rel: 'stylesheet', href: reactToastifyStyles },
   { rel: 'stylesheet', href: tailwindReset },
@@ -62,6 +68,7 @@ export const Head = createHead(() => (
     <Meta />
     <Links />
     <script dangerouslySetInnerHTML={{ __html: inlineThemeCode }} />
+    <title>Gebeya AI Assistant</title>
   </>
 ));
 

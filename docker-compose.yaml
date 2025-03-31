@@ -38,6 +38,10 @@ services:
     build:
       target: bolt-ai-development
     env_file: '.env.local'
+    # Connect to both networks - the default bolt network and the AyandaGPT network
+    networks:
+      - default
+      - ayandagpt_default
     environment:
       - NODE_ENV=development
       - VITE_HMR_PROTOCOL=ws
@@ -53,15 +57,14 @@ services:
       - OPEN_ROUTER_API_KEY=${OPEN_ROUTER_API_KEY}
       - XAI_API_KEY=${XAI_API_KEY}
       - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
-      - OLLAMA_API_BASE_URL=${OLLAMA_API_BASE_URL}
+      # Point directly to the ollama container by its name in the ayandagpt network
+      - OLLAMA_API_BASE_URL=http://ayandagpt-ollama-1:11434
       - TOGETHER_API_KEY=${TOGETHER_API_KEY}
       - TOGETHER_API_BASE_URL=${TOGETHER_API_BASE_URL}
       - AWS_BEDROCK_CONFIG=${AWS_BEDROCK_CONFIG}
       - VITE_LOG_LEVEL=${VITE_LOG_LEVEL:-debug}
       - DEFAULT_NUM_CTX=${DEFAULT_NUM_CTX:-32768}
       - RUNNING_IN_DOCKER=true
-    extra_hosts:
-      - 'host.docker.internal:host-gateway'
     volumes:
       - type: bind
         source: .
@@ -90,3 +93,8 @@ services:
     command: pnpm run dockerstart
     profiles:
       - prebuilt
+
+# Add external networks configuration at the end of the file
+networks:
+  ayandagpt_default:
+    external: true

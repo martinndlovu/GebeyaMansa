@@ -14,12 +14,10 @@ let commitJson = {
   version: JSON.stringify(process.env.npm_package_version),
 };
 
-console.log(`
-★═══════════════════════════════════════★
-          B O L T . D I Y
-         ⚡️  Welcome  ⚡️
-★═══════════════════════════════════════★
-`);
+console.log('★═══════════════════════════════════════★');
+console.log('        G E B E Y A  M A N S A');
+console.log('         ⚡️  Welcome  ⚡️');
+console.log('★═══════════════════════════════════════★');
 console.log('📍 Current Version Tag:', `v${commitJson.version}`);
 console.log('📍 Current Commit Version:', commitJson.hash);
 console.log('  Please wait until the URL appears here');

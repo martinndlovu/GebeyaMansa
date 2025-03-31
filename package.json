@@ -1,14 +1,14 @@
 {
-  "name": "bolt",
-  "description": "An AI Agent",
+  "name": "gebeya-mansa",
+  "description": "Gebeya Mansa - AI Development Platform",
   "private": true,
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
   "version": "0.0.7",
   "author": {
-    "name": "bolt.diy team",
-    "email": "maintainers@bolt.diy"
+    "name": "Gebeya Mansa team",
+    "email": "maintainers@gebeya.com"
   },
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",

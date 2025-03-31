@@ -14,11 +14,32 @@ body {
 }
 
 :root {
-  --gradient-opacity: 0.8;
-  --primary-color: rgba(158, 117, 240, var(--gradient-opacity));
-  --secondary-color: rgba(138, 43, 226, var(--gradient-opacity));
-  --accent-color: rgba(128, 59, 239, var(--gradient-opacity));
-  // --primary-color: rgba(147, 112, 219, var(--gradient-opacity));
-  // --secondary-color: rgba(138, 43, 226, var(--gradient-opacity));
-  // --accent-color: rgba(180, 170, 220, var(--gradient-opacity));
+  /* Gebeya brand colors */
+  --gradient-opacity: 1;
+  --primary-color: #FF1F8F;      /* Gebeya pink */
+  --secondary-color: #FF6B00;    /* Gebeya orange */
+  --accent-color: #FF4B6B;       /* Gebeya pink-orange */
+  
+  /* Theme colors */
+  --gebeya-pink-50: #FFF0F6;
+  --gebeya-pink-100: #FFE0EE;
+  --gebeya-pink-200: #FFC1DD;
+  --gebeya-pink-300: #FFA2CC;
+  --gebeya-pink-400: #FF83BB;
+  --gebeya-pink-500: #FF64AA;
+  --gebeya-pink-600: #FF1F8F;  /* Primary */
+  --gebeya-pink-700: #CC1872;
+  --gebeya-pink-800: #991255;
+  --gebeya-pink-900: #660C38;
+  
+  --gebeya-orange-50: #FFF5EB;
+  --gebeya-orange-100: #FFE4CC;
+  --gebeya-orange-200: #FFD4AD;
+  --gebeya-orange-300: #FFC38F;
+  --gebeya-orange-400: #FFB270;
+  --gebeya-orange-500: #FF9240;
+  --gebeya-orange-600: #FF6B00;  /* Secondary */
+  --gebeya-orange-700: #CC5500;
+  --gebeya-orange-800: #994000;
+  --gebeya-orange-900: #662B00;
 }

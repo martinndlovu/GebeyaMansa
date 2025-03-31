@@ -15,8 +15,12 @@ export type ProviderInfo = {
 };
 
 export interface IProviderSetting {
-  enabled?: boolean;
+  enabled: boolean;
   baseUrl?: string;
+  defaultModel?: string;
+  apiKey?: string;
+  apiKeyLink?: string;
+  labelForGetApiKey?: string;
 }
 
 export type IProviderConfig = ProviderInfo & {

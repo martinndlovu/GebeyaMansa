@@ -80,7 +80,7 @@ export default defineConfig((config) => {
       __GIT_REMOTE_URL: JSON.stringify(gitInfo.remoteUrl),
       __GIT_REPO_NAME: JSON.stringify(gitInfo.repoName),
       __APP_VERSION: JSON.stringify(process.env.npm_package_version),
-      __PKG_NAME: JSON.stringify(pkg.name),
+      __PKG_NAME: JSON.stringify('gebeya-mansa'),
       __PKG_DESCRIPTION: JSON.stringify(pkg.description),
       __PKG_LICENSE: JSON.stringify(pkg.license),
       __PKG_DEPENDENCIES: JSON.stringify(pkg.dependencies),
@@ -127,18 +127,16 @@ export default defineConfig((config) => {
       }),
       {
         name: 'buffer-polyfill',
-        transform(code, id) {
+        transform(code: string, id: string) {
           if (id.includes('env.mjs')) {
             return {
               code: `import { Buffer } from 'buffer';\n${code}`,
               map: null,
             };
           }
-
           return null;
         },
       },
-      config.mode !== 'test' && remixCloudflareDevProxy(),
       remixVitePlugin({
         future: {
           v3_fetcherPersist: true,
@@ -151,7 +149,7 @@ export default defineConfig((config) => {
       tsconfigPaths(),
       chrome129IssuePlugin(),
       config.mode === 'production' && optimizeCssModules({ apply: 'build' }),
-    ],
+    ].filter(Boolean),
     envPrefix: [
       'VITE_',
       'OPENAI_LIKE_API_BASE_URL',
@@ -166,6 +164,7 @@ export default defineConfig((config) => {
         },
       },
     },
+    name: 'gebeya-mansa',
   };
 });
 

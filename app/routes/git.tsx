@@ -7,7 +7,10 @@ import { Header } from '~/components/header/Header';
 import BackgroundRays from '~/components/ui/BackgroundRays';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Bolt' }, { name: 'description', content: 'Talk with Bolt, an AI assistant from StackBlitz' }];
+  return [
+    { title: 'Gebeya AI Assistant' },
+    { name: 'description', content: 'Talk with Gebeya AI Assistant, your smart coding companion' }
+  ];
 };
 
 export async function loader(args: LoaderFunctionArgs) {

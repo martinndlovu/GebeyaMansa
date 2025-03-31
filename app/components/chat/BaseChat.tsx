@@ -324,10 +324,10 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
             {!chatStarted && (
               <div id="intro" className="mt-[16vh] max-w-chat mx-auto text-center px-4 lg:px-0">
                 <h1 className="text-3xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-4 animate-fade-in">
-                  Where ideas begin
+                  Empowering African Excellence
                 </h1>
                 <p className="text-md lg:text-xl mb-8 text-bolt-elements-textSecondary animate-fade-in animation-delay-200">
-                  Bring ideas to life in seconds or get help on existing projects.
+                  Building the future of technology, one line of code at a time.
                 </p>
               </div>
             )}
@@ -415,34 +415,36 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     <rect className={classNames(styles.PromptShine)} x="48" y="24" width="70" height="1"></rect>
                   </svg>
                   <div>
-                    <ClientOnly>
-                      {() => (
-                        <div className={isModelSettingsCollapsed ? 'hidden' : ''}>
-                          <ModelSelector
-                            key={provider?.name + ':' + modelList.length}
-                            model={model}
-                            setModel={setModel}
-                            modelList={modelList}
-                            provider={provider}
-                            setProvider={setProvider}
-                            providerList={providerList || (PROVIDER_LIST as ProviderInfo[])}
-                            apiKeys={apiKeys}
-                            modelLoading={isModelLoading}
-                          />
-                          {(providerList || []).length > 0 &&
-                            provider &&
-                            (!LOCAL_PROVIDERS.includes(provider.name) || 'OpenAILike') && (
-                              <APIKeyManager
-                                provider={provider}
-                                apiKey={apiKeys[provider.name] || ''}
-                                setApiKey={(key) => {
-                                  onApiKeysChange(provider.name, key);
-                                }}
-                              />
-                            )}
-                        </div>
-                      )}
-                    </ClientOnly>
+                    <div className="hidden">
+                      <ClientOnly>
+                        {() => (
+                          <div>
+                            <ModelSelector
+                              key={provider?.name + ':' + modelList.length}
+                              model={model}
+                              setModel={setModel}
+                              modelList={modelList}
+                              provider={provider}
+                              setProvider={setProvider}
+                              providerList={providerList || (PROVIDER_LIST as ProviderInfo[])}
+                              apiKeys={apiKeys}
+                              modelLoading={isModelLoading}
+                            />
+                            {(providerList || []).length > 0 &&
+                              provider &&
+                              (!LOCAL_PROVIDERS.includes(provider.name) || 'OpenAILike') && (
+                                <APIKeyManager
+                                  provider={provider}
+                                  apiKey={apiKeys[provider.name] || ''}
+                                  setApiKey={(key) => {
+                                    onApiKeysChange(provider.name, key);
+                                  }}
+                                />
+                              )}
+                          </div>
+                        )}
+                      </ClientOnly>
+                    </div>
                   </div>
                   <FilePreview
                     files={uploadedFiles}
@@ -469,18 +471,20 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                   >
                     <textarea
                       ref={textareaRef}
+                      value={input}
+                      onChange={handleInputChange}
                       className={classNames(
                         'w-full pl-4 pt-4 pr-16 outline-none resize-none text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary bg-transparent text-sm',
                         'transition-all duration-200',
-                        'hover:border-bolt-elements-focus',
+                        'focus:outline-none focus:ring-2 focus:ring-[#FF1F8F]/50',
                       )}
                       onDragEnter={(e) => {
                         e.preventDefault();
-                        e.currentTarget.style.border = '2px solid #1488fc';
+                        e.currentTarget.style.border = '2px solid #FF1F8F';
                       }}
                       onDragOver={(e) => {
                         e.preventDefault();
-                        e.currentTarget.style.border = '2px solid #1488fc';
+                        e.currentTarget.style.border = '2px solid #FF1F8F';
                       }}
                       onDragLeave={(e) => {
                         e.preventDefault();
@@ -525,16 +529,11 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                           handleSendMessage?.(event);
                         }
                       }}
-                      value={input}
-                      onChange={(event) => {
-                        handleInputChange?.(event);
-                      }}
-                      onPaste={handlePaste}
                       style={{
                         minHeight: TEXTAREA_MIN_HEIGHT,
                         maxHeight: TEXTAREA_MAX_HEIGHT,
                       }}
-                      placeholder="How can Bolt help you today?"
+                      placeholder="How can Mansa help you today?"
                       translate="no"
                     />
                     <ClientOnly>
@@ -584,20 +583,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                           disabled={isStreaming}
                         />
                         {chatStarted && <ClientOnly>{() => <ExportChatButton exportChat={exportChat} />}</ClientOnly>}
-                        <IconButton
-                          title="Model Settings"
-                          className={classNames('transition-all flex items-center gap-1', {
-                            'bg-bolt-elements-item-backgroundAccent text-bolt-elements-item-contentAccent':
-                              isModelSettingsCollapsed,
-                            'bg-bolt-elements-item-backgroundDefault text-bolt-elements-item-contentDefault':
-                              !isModelSettingsCollapsed,
-                          })}
-                          onClick={() => setIsModelSettingsCollapsed(!isModelSettingsCollapsed)}
-                          disabled={!providerList || providerList.length === 0}
-                        >
-                          <div className={`i-ph:caret-${isModelSettingsCollapsed ? 'right' : 'down'} text-lg`} />
-                          {isModelSettingsCollapsed ? <span className="text-xs">{model}</span> : <span />}
-                        </IconButton>
                       </div>
                       {input.length > 3 ? (
                         <div className="text-xs text-bolt-elements-textTertiary">
@@ -606,7 +591,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                           a new line
                         </div>
                       ) : null}
-                      <SupabaseConnection />
                     </div>
                   </div>
                 </div>
@@ -628,7 +612,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
 
                   handleSendMessage?.(event, messageInput);
                 })}
-              {!chatStarted && <StarterTemplates />}
             </div>
           </div>
           <ClientOnly>

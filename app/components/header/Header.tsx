@@ -17,10 +17,23 @@ export function Header() {
     >
       <div className="flex items-center gap-2 z-logo text-bolt-elements-textPrimary cursor-pointer">
         <div className="i-ph:sidebar-simple-duotone text-xl" />
-        <a href="/" className="text-2xl font-semibold text-accent flex items-center">
-          {/* <span className="i-bolt:logo-text?mask w-[46px] inline-block" /> */}
-          <img src="/logo-light-styled.png" alt="logo" className="w-[90px] inline-block dark:hidden" />
-          <img src="/logo-dark-styled.png" alt="logo" className="w-[90px] inline-block hidden dark:block" />
+        <a href="/" className="text-2xl font-semibold text-accent flex items-center gap-2">
+          {/* Gebeya logo with light/dark text variants */}
+          <div className="flex items-center">
+            <img 
+              src="/gebeya-logo-light.png" 
+              alt="Gebeya" 
+              className="h-8 block dark:hidden" 
+            />
+            <img 
+              src="/gebeya-logo-dark.png" 
+              alt="Gebeya" 
+              className="h-8 hidden dark:block" 
+            />
+            <span className="ml-2 text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#FF1F8F] to-[#FF6B00] font-bold self-center">
+              Mansa
+            </span>
+          </div>
         </a>
       </div>
       {chat.started && ( // Display ChatDescription and HeaderActionButtons only when the chat has started.

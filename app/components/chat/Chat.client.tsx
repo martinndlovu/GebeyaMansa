@@ -131,14 +131,8 @@ export const ChatImpl = memo(
     const supabaseAlert = useStore(workbenchStore.supabaseAlert);
     const { activeProviders, promptId, autoSelectTemplate, contextOptimizationEnabled } = useSettings();
 
-    const [model, setModel] = useState(() => {
-      const savedModel = Cookies.get('selectedModel');
-      return savedModel || DEFAULT_MODEL;
-    });
-    const [provider, setProvider] = useState(() => {
-      const savedProvider = Cookies.get('selectedProvider');
-      return (PROVIDER_LIST.find((p) => p.name === savedProvider) || DEFAULT_PROVIDER) as ProviderInfo;
-    });
+    const [model] = useState(DEFAULT_MODEL);
+    const [provider] = useState(DEFAULT_PROVIDER);
 
     const { showChat } = useStore(chatStore);
 
@@ -204,6 +198,9 @@ export const ChatImpl = memo(
         }
 
         logger.debug('Finished streaming');
+        
+        // Switch to preview view when response is complete
+        workbenchStore.currentView.set('preview');
       },
       initialMessages,
       initialInput: Cookies.get(PROMPT_COOKIE_KEY) || '',
@@ -491,15 +488,8 @@ export const ChatImpl = memo(
       }
     }, []);
 
-    const handleModelChange = (newModel: string) => {
-      setModel(newModel);
-      Cookies.set('selectedModel', newModel, { expires: 30 });
-    };
-
-    const handleProviderChange = (newProvider: ProviderInfo) => {
-      setProvider(newProvider);
-      Cookies.set('selectedProvider', newProvider.name, { expires: 30 });
-    };
+    const handleModelChange = () => {};
+    const handleProviderChange = () => {};
 
     return (
       <BaseChat
